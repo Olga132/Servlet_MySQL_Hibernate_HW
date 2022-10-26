@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 
+@NamedQuery(name="sorted_by_date", query= "select l from Ledger l order by l.date")
+@NamedQuery(name="get_sum_by_movement_type_for_the_month_of_the_year",
+        query = "select sum(l.sum) from Ledger l where l.movementType = :moveType " +
+                "and month(l.date) = :monthL and year(l.date) = :yearL")
 
 @Entity
 public class Ledger {
